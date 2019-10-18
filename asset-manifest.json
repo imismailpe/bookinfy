@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/bookinfy/static/css/main.b100e6da.chunk.css",
+    "main.js": "/bookinfy/static/js/main.08668959.chunk.js",
+    "main.js.map": "/bookinfy/static/js/main.08668959.chunk.js.map",
+    "runtime-main.js": "/bookinfy/static/js/runtime-main.f4d1e264.js",
+    "runtime-main.js.map": "/bookinfy/static/js/runtime-main.f4d1e264.js.map",
+    "static/js/2.0e199036.chunk.js": "/bookinfy/static/js/2.0e199036.chunk.js",
+    "static/js/2.0e199036.chunk.js.map": "/bookinfy/static/js/2.0e199036.chunk.js.map",
+    "index.html": "/bookinfy/index.html",
+    "precache-manifest.16da6a93a9066f99a2ccad1650a64320.js": "/bookinfy/precache-manifest.16da6a93a9066f99a2ccad1650a64320.js",
+    "service-worker.js": "/bookinfy/service-worker.js",
+    "static/css/main.b100e6da.chunk.css.map": "/bookinfy/static/css/main.b100e6da.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.f4d1e264.js",
+    "static/js/2.0e199036.chunk.js",
+    "static/css/main.b100e6da.chunk.css",
+    "static/js/main.08668959.chunk.js"
+  ]
+}
