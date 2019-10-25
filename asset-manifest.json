@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/bookinfy/static/css/main.f08e5d49.chunk.css",
-    "main.js": "/bookinfy/static/js/main.347596bf.chunk.js",
-    "main.js.map": "/bookinfy/static/js/main.347596bf.chunk.js.map",
+    "main.js": "/bookinfy/static/js/main.c59d3fb3.chunk.js",
+    "main.js.map": "/bookinfy/static/js/main.c59d3fb3.chunk.js.map",
     "runtime-main.js": "/bookinfy/static/js/runtime-main.f4d1e264.js",
     "runtime-main.js.map": "/bookinfy/static/js/runtime-main.f4d1e264.js.map",
     "static/css/2.0624914a.chunk.css": "/bookinfy/static/css/2.0624914a.chunk.css",
-    "static/js/2.570ce4fa.chunk.js": "/bookinfy/static/js/2.570ce4fa.chunk.js",
-    "static/js/2.570ce4fa.chunk.js.map": "/bookinfy/static/js/2.570ce4fa.chunk.js.map",
+    "static/js/2.e3d1abd9.chunk.js": "/bookinfy/static/js/2.e3d1abd9.chunk.js",
+    "static/js/2.e3d1abd9.chunk.js.map": "/bookinfy/static/js/2.e3d1abd9.chunk.js.map",
     "index.html": "/bookinfy/index.html",
-    "precache-manifest.654191e5edb038e09b5d4fe79ce922d7.js": "/bookinfy/precache-manifest.654191e5edb038e09b5d4fe79ce922d7.js",
+    "precache-manifest.fb4738118b3c4e7060a50db9d7cd57ba.js": "/bookinfy/precache-manifest.fb4738118b3c4e7060a50db9d7cd57ba.js",
     "service-worker.js": "/bookinfy/service-worker.js",
     "static/css/2.0624914a.chunk.css.map": "/bookinfy/static/css/2.0624914a.chunk.css.map",
     "static/css/main.f08e5d49.chunk.css.map": "/bookinfy/static/css/main.f08e5d49.chunk.css.map"
@@ -17,8 +17,8 @@
   "entrypoints": [
     "static/js/runtime-main.f4d1e264.js",
     "static/css/2.0624914a.chunk.css",
-    "static/js/2.570ce4fa.chunk.js",
+    "static/js/2.e3d1abd9.chunk.js",
     "static/css/main.f08e5d49.chunk.css",
-    "static/js/main.347596bf.chunk.js"
+    "static/js/main.c59d3fb3.chunk.js"
   ]
 }
