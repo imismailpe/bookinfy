@@ -1,67 +1,53 @@
-import React,{Component} from 'react';
+import React,{useState} from 'react';
 import axios from 'axios';
 
-export default class CreateUser extends Component{
-	constructor(props){
-		super(props);
-		this.onSubmit=this.onSubmit.bind(this);
-		this.onNameChange=this.onNameChange.bind(this);
-		this.onEmailChange=this.onEmailChange.bind(this);
-		this.onPasswordChange=this.onPasswordChange.bind(this);
-		this.state={
-			name:'',
-			email:'',
-			password:''
-		}
-	}
-	onNameChange=(e)=>{
-		this.setState({name:e.target.value})
-	}
-	onEmailChange=(e)=>{
-		this.setState({email:e.target.value})
-	}
-	onPasswordChange=(e)=>{
-		this.setState({password:e.target.value})
-	}
-	onSubmit=(e)=>{
+export default function CreateUser(){
+	const uName = useFormInput('')
+	const uEmail = useFormInput('')
+	const uPassword = useFormInput('')
+
+	const submitForm=(e)=>{
 		e.preventDefault();
 		const userObject={
-			name: this.state.name,
-			email: this.state.email,
-			password: this.state.password
+			name: uName.value,
+			email: uEmail.value,
+			password: uPassword.value
 		}
-		console.log(typeof userObject)
 		axios.post('http://localhost:4000/create',userObject)
 			.then((res)=>{
 				console.log(res.data)
 			}).catch((error)=>{
 				console.log(error)
 			})
-		this.setState({
-			name:'',
-			email:'',
-			password:''
-		})
 	}
-	render(){
+
 	return(
 		<div className="wrapper">
-			<form onSubmit={this.onSubmit}>
+			<form onSubmit={submitForm}>
 				<div className="form-group row">
 					<label className="col-sm-4">Name:</label>
-					<input name="name" type="text" className="form-control col-sm-8" onChange={this.onNameChange}/>
+					<input {...uName} name="name" type="text" className="form-control col-sm-8" />
 				</div>
 				<div className="form-group row">
 					<label className="col-sm-4">Email:</label>
-					<input type="email" className="form-control col-sm-8" onChange={this.onEmailChange}/>
+					<input {...uEmail} type="email" className="form-control col-sm-8"/>
 				</div>
 				<div className="form-group row">
 					<label className="col-sm-4">Password:</label>
-					<input type="password" className="form-control col-sm-8" onChange={this.onPasswordChange}/>
+					<input {...uPassword} type="password" className="form-control col-sm-8"/>
 				</div>
 				<button type="submit" className="btn btn-success">Submit</button>
 			</form>
 		</div>
 	)
 }
+function useFormInput(initialValue){
+	const [value,setValue] = useState(initialValue)
+	function handleChange(e){
+		setValue(e.target.value)
+	}
+	return {
+		value,
+		onChange: handleChange
+	}
 }

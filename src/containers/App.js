@@ -1,14 +1,14 @@
-import React,{Component} from 'react';
-import '../App.css';
+import React,{useState} from 'react';
+import {useSelector} from 'react-redux';
 import {BrowserRouter as Router,Route,Link,Switch } from 'react-router-dom';
 import {Navbar,Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import ViewUsers from '../components/ViewUsers';
 import CreateUser from '../components/CreateUser';
 import EditUser from '../containers/EditUser';
+import '../App.css';
 
-class App extends Component{
-  render(){
+export default function App(){
   return (
     <Router>
     <div className="App">
@@ -20,6 +20,7 @@ class App extends Component{
 				    <Nav className="mr-auto">
 				      <Link className="nav-link" to={"/createuser"}>Create User</Link>
 				      <Link className="nav-link" to={"/viewusers"}>View Users</Link>
+				      <Link className="nav-link" to={`/edituser/5db063f078c8752d54785b03`}>Edit</Link>
 				    </Nav>
 				  </Navbar.Collapse>
 				</Navbar>
@@ -28,10 +29,9 @@ class App extends Component{
         <div className="row">
           <div className="col-md-12">
             <Switch>
-              <Route exact path="/" component={ViewUsers}/>
               <Route path="/createuser" component={CreateUser}/>
               <Route path="/viewusers" component={ViewUsers}/>
-              <Route path="/edituser/:userid" component={EditUser}/>
+              <Route path="/edituser/:userid/" component={EditUser}/>
             </Switch>
           </div>
         </div>
@@ -39,7 +39,4 @@ class App extends Component{
     </div>
     </Router>
   )
-  }
 }
-
-export default App;
