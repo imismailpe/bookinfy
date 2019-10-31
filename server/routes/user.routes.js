@@ -25,11 +25,13 @@ router.route('/users').get((req, res) => {
         } else {
             //console.log("no error in get")
             res.json(data)
+            //res.send("here are the users")
+
         }
     })
 })
 
-router.route('/edituser/:userid').get((req, res) => {
+router.route('/users/edit/:userid').get((req, res) => {
     user.findById(req.params.userid, (error, data) => {
         if (error) {
             return next(error)
@@ -40,8 +42,9 @@ router.route('/edituser/:userid').get((req, res) => {
 })
 
 
-router.route('/update/:id').put((req, res, next) => {
-    user.findByIdAndUpdate(req.params.id, {
+router.route('users/update/:userid').put((req, res, next) => {
+    console.log("req.body is ",req.body)
+    user.findByIdAndUpdate(req.params.userid, {
         $set: req.body
     }, (error, data) => {
         if (error) {

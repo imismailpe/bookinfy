@@ -1,67 +1,63 @@
-import React, { Component } from 'react';
-import {BrowserRouter, Link} from 'react-router-dom'
+import React, { useState,useEffect } from 'react';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
-class EditTable extends Component{
-	constructor(props){
-		super(props)
-		this.state={
-			name:'',
-			email:''
-		}
-	}
-	handleChange=(e)=>{
-		console.log(e)
-	}
-	componentDidMount(){
-		console.log("this props-",this.props)
-		this.setState({
-			name:this.props.user.name,
-			email: this.props.user.email
-		})
-	}
-	render(){
+export default function EditTable({props}){
+  const uName = useData(props.name)
+  const uEmail = useData(props.email)
+
+  const submitUpdate = ()=>{
+    const userObject={
+      name: uName.value,
+      email: uEmail.value
+    }
+    console.log("submitted data is ", userObject)
+    console.log("userid is ",props._id)
+    axios.put(`http://localhost:4000/users/update/${props._id}`,userObject)
+    .then((res)=>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log(error)
+    })
+  }
+
   return (
-      <BrowserRouter>
+      <React.Fragment>
       <tr>
           <td>Id</td>
           <td>
-              {this.props.user._id}
+              {props._id}
           </td>
       </tr>
       <tr>
           <td>Name</td>
           <td>
-              <input value={this.state.name} onChange={this.handleChange} type="text"/>
+              <input {...uName} type="text"/>
           </td>
       </tr>
       <tr>
           <td>Email</td>
           <td>
-              <input value={this.state.email} onChange={this.handleChange} type="text"/>
+              <input {...uEmail} type="email"/>
           </td>
       </tr>
       <tr>
           <td colSpan='2'>
               	<button>Delete user</button>&nbsp;
-              	<button>Update</button>
+              	<button onClick={submitUpdate}>Update</button>
           </td>
       </tr>
-      </BrowserRouter>
-  )}
+      </React.Fragment>
+  )
 }
-
-export default EditTable;
-/*
-function useFormInput(initialValue){
-	console.log("initialValue is ",initialValue)
-	const [value,setValue]=useState(initialValue)
-
-	function handleChange(e){
-		setValue(e.target.value)
-	}
-	return {
-			value,
-			onChange: handleChange
-		}
+function useData(initialValue){
+  const [value,setValue] = useState(initialValue)
+  
+  function handleChange(e){
+    setValue(e.target.value)
+  }
+  return{
+    value,
+    onChange: handleChange
+  }
 }
-*/

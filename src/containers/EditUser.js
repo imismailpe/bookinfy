@@ -1,28 +1,24 @@
-import React,{Component} from 'react';
+import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import EditTable from '../containers/EditTable';
 
-export default class EditUser extends Component{
-	constructor(props){
-		super(props)
-		this.state={
-			user:{}
-		}
-	}
-	componentDidMount(){
-		axios.get(`http://localhost:4000/edituser/${this.props.match.params.userid}`)
+export default function EditUser(props){
+	const [userInEdit,setUserInEdit] = useState()
+	const [isLoading,setIsLoading] = useState(true)
+
+	useEffect(()=>{
+		setIsLoading(true)
+		axios.get(`http://localhost:4000/users/edit/${props.match.params.userid}`)
 		.then((res)=>{
-			//console.log(res.data)
-			this.setState({user: res.data})
-			console.log("editing -",this.state.user);
+			setUserInEdit(res.data)
+			setIsLoading(false)
 		}).catch((error)=>{
 			console.log(error)
 		})
-	}
-
-	render(){
-		return(
-			<div className="wrapper-users">
+	},[])
+	
+	return(
+		<div className="wrapper-users">
         <div className="container">
           <table className="table table-striped table-dark">
             <thead className="thead-dark">
@@ -32,11 +28,10 @@ export default class EditUser extends Component{
               </tr>
             </thead>
             <tbody>
-              <EditTable user={this.state.user} />
+              {!isLoading && <EditTable props={userInEdit} />}
             </tbody>
           </table>
         </div>
       </div>
 		)
-	}
 }

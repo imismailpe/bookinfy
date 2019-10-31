@@ -1,29 +1,22 @@
-import React, { Component } from 'react';
-import {BrowserRouter, Link} from 'react-router-dom'
+import React from 'react';
+import {Link} from 'react-router-dom';
 
-class DataTable extends Component {
-    render() {
-        return (
-            <tr><BrowserRouter>
-                <td>
-                    {this.props.user._id}
-                </td>
-                <td>
-                    {this.props.user.name}
-                </td>
-                <td>
-                    {this.props.user.email}
-                </td>
-                <td>
-                    	<Link to={`/edituser/${this.props.user._id}`}>Edit</Link>
-                </td>
-                <td>
-                    	<Link to={`/delete/${this.props.user._id}`}>Delete</Link>
-                </td>
-                </BrowserRouter>
-            </tr>
-        );
-    }
+export default function DataTable({props}){
+    return (
+        <tr>
+            <td>
+                {props._id}
+            </td>
+            <td>
+                {props.name}
+            </td>
+            <td>
+                {props.email}
+            </td>
+            <td>
+                <Link className="nav-link" to={`/edituser/${props._id}`}>Edit</Link>
+            </td>
+            
+        </tr>
+    )
 }
-
-export default DataTable;
