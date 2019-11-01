@@ -32,42 +32,55 @@ router.route('/users').get((req, res) => {
 })
 
 router.route('/users/edit/:userid').get((req, res) => {
-    user.findById(req.params.userid, (error, data) => {
-        if (error) {
-            return next(error)
-        } else {
-            res.json(data)
+    user.findById(
+        req.params.userid, 
+        (error, data) => {
+            if (error) {
+                return next(error)
+            } else {
+                res.json(data)
+            }
         }
-    })
+    )
+})
+
+router.route('/users/update/:userid').put((req, res,next) => {
+    user.findByIdAndUpdate(
+        req.params.userid, 
+        {
+            $set: req.body
+        },
+        (error, data) => {
+            if (error) {
+                return next(error)
+            }
+            else {
+                res.json(data)
+                console.log('User updated successfully !')
+            }
+        }
+    )
 })
 
 
-router.route('users/update/:userid').put((req, res, next) => {
-    console.log("req.body is ",req.body)
-    user.findByIdAndUpdate(req.params.userid, {
-        $set: req.body
-    }, (error, data) => {
-        if (error) {
-            return next(error);
-            console.log(error)
-        } else {
-            res.json(data)
-            console.log('User updated successfully !')
+router.route('/users/delete/:userid').delete((req, res, next) => {
+    user.findByIdAndRemove(
+        req.params.userid,
+        (error, data) => {
+            if (error) {
+                return next(error);
+            } 
+            else 
+            {
+                res.status(200).json(
+                    {
+                        msg: data
+                    }
+                )
+                console.log(data)
+            }
         }
-    })
-})
-
-router.route('/delete/:id').delete((req, res, next) => {
-    user.findByIdAndRemove(req.params.id, (error, data) => {
-        if (error) {
-            return next(error);
-        } else {
-            res.status(200).json({
-                msg: data
-            })
-            console.log(msg)
-        }
-    })
+    )
 })
 
 module.exports = router;

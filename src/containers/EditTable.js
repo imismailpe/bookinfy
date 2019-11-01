@@ -17,7 +17,21 @@ export default function EditTable({props}){
     .then((res)=>{
       console.log(res)
     }).catch((error)=>{
-      console.log(error)
+      console.log("error--",error)
+    })
+  }
+  const submitDelete = ()=>{
+    const userObject={
+      name: uName.value,
+      email: uEmail.value
+    }
+    console.log("submitted data is ", userObject)
+    console.log("userid is ",props._id)
+    axios.delete(`http://localhost:4000/users/delete/${props._id}`,userObject)
+    .then((res)=>{
+      console.log(res)
+    }).catch((error)=>{
+      console.log("error--",error)
     })
   }
 
@@ -43,7 +57,7 @@ export default function EditTable({props}){
       </tr>
       <tr>
           <td colSpan='2'>
-              	<button>Delete user</button>&nbsp;
+              	<button onClick={submitDelete}>Delete user</button>&nbsp;
               	<button onClick={submitUpdate}>Update</button>
           </td>
       </tr>
