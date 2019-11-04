@@ -1,10 +1,13 @@
 import React,{useState,useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import axios from 'axios';
-import EditTable from '../containers/EditTable';
+import EditTable from './EditTable';
+import Spinner from '../Spinner/Spinner';
 
 export default function EditUser(props){
 	const [userInEdit,setUserInEdit] = useState()
 	const [isLoading,setIsLoading] = useState(true)
+	const alertMessage = useSelector(state=>state.statusMessage)
 
 	useEffect(()=>{
 		setIsLoading(true)
@@ -15,10 +18,11 @@ export default function EditUser(props){
 		}).catch((error)=>{
 			console.log(error)
 		})
-	},[])
+	},[props.match.params.userid])
 	
 	return(
 		<div className="wrapper-users">
+			{alertMessage?<div className="alert alert-success" role="alert">{alertMessage}</div>:null}
         <div className="container">
           <table className="table table-striped table-dark">
             <thead className="thead-dark">
@@ -28,7 +32,7 @@ export default function EditUser(props){
               </tr>
             </thead>
             <tbody>
-              {!isLoading && <EditTable props={userInEdit} />}
+              {isLoading?<Spinner/>:<EditTable props={userInEdit} />}
             </tbody>
           </table>
         </div>

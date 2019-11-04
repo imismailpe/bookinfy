@@ -1,11 +1,10 @@
-import React,{useState} from 'react';
-import {useSelector} from 'react-redux';
+import React from 'react';
 import {BrowserRouter as Router,Route,Link,Switch } from 'react-router-dom';
 import {Navbar,Nav} from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import ViewUsers from '../components/ViewUsers';
-import CreateUser from '../components/CreateUser';
-import EditUser from '../containers/EditUser';
+import ViewUsers from '../components/ViewUsers/ViewUsers';
+import CreateUser from '../components/CreateUser/CreateUser';
+import EditUser from '../components/EditUser/EditUser';
 import '../App.css';
 
 export default function App(){
@@ -20,7 +19,6 @@ export default function App(){
 				    <Nav className="mr-auto">
 				      <Link className="nav-link" to={"/createuser"}>Create User</Link>
 				      <Link className="nav-link" to={"/viewusers"}>View Users</Link>
-				      <Link className="nav-link" to={`/edituser/5db063f078c8752d54785b03`}>Edit</Link>
 				    </Nav>
 				  </Navbar.Collapse>
 				</Navbar>

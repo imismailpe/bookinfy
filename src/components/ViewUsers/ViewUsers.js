@@ -1,12 +1,10 @@
 import React,{useState,useEffect} from 'react';
 import axios from 'axios';
 import DataTable from './DataTable';
-import {BrowserRouter,Link} from 'react-router-dom';
 
 export default function ViewUsers(){
 	const [usersCollection,setUsersCollection] = useState([])
-
-	useEffect(()=>{
+	useEffect( ()=>{
 		axios.get('http://localhost:4000/users')
 		.then((res)=>{
 			setUsersCollection(res.data)
@@ -14,7 +12,6 @@ export default function ViewUsers(){
 			console.log(error)
 		})
 	},[])
-
 	return(
 		<div className="wrapper-users">
       <div className="container">

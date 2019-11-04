@@ -1,10 +1,13 @@
 import React,{useState} from 'react';
-import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import {submitNewUser} from '../../actions';
 
 export default function CreateUser(){
 	const uName = useFormInput('')
 	const uEmail = useFormInput('')
 	const uPassword = useFormInput('')
+	const dispatch = useDispatch()
+	const alertMessage = useSelector(state=>state.statusMessage)
 
 	const submitForm=(e)=>{
 		e.preventDefault();
@@ -13,16 +16,12 @@ export default function CreateUser(){
 			email: uEmail.value,
 			password: uPassword.value
 		}
-		axios.post('http://localhost:4000/create',userObject)
-			.then((res)=>{
-				console.log(res.data)
-			}).catch((error)=>{
-				console.log(error)
-			})
+		dispatch(submitNewUser(userObject))
 	}
 
 	return(
 		<div className="wrapper">
+			{alertMessage?<div className="alert alert-success" role="alert">{alertMessage}</div>:null}
 			<form onSubmit={submitForm}>
 				<div className="form-group row">
 					<label className="col-sm-4">Name:</label>
