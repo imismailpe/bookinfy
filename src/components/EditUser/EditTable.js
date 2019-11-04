@@ -1,42 +1,36 @@
-import React, { useState,useEffect } from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
+import {submitUserUpdate, submitUserDelete} from '../../actions';
 
 export default function EditTable({props}){
+  const uId = props._id
   const uName = useData(props.name)
   const uEmail = useData(props.email)
+  const dispatch = useDispatch()
 
   const submitUpdate = ()=>{
     const userObject={
+      userid: uId,
       name: uName.value,
       email: uEmail.value
     }
     console.log("submitted data is ", userObject)
     console.log("userid is ",props._id)
-    axios.put(`http://localhost:4000/users/update/${props._id}`,userObject)
-    .then((res)=>{
-      console.log(res)
-    }).catch((error)=>{
-      console.log("error--",error)
-    })
+    dispatch(submitUserUpdate(userObject))
   }
   const submitDelete = ()=>{
     const userObject={
+      userid: uId,
       name: uName.value,
       email: uEmail.value
     }
     console.log("submitted data is ", userObject)
     console.log("userid is ",props._id)
-    axios.delete(`http://localhost:4000/users/delete/${props._id}`,userObject)
-    .then((res)=>{
-      console.log(res)
-    }).catch((error)=>{
-      console.log("error--",error)
-    })
+    dispatch(submitUserDelete(userObject))
   }
 
   return (
-      <React.Fragment>
+    <React.Fragment>
       <tr>
           <td>Id</td>
           <td>
@@ -61,7 +55,7 @@ export default function EditTable({props}){
               	<button onClick={submitUpdate}>Update</button>
           </td>
       </tr>
-      </React.Fragment>
+    </React.Fragment>
   )
 }
 function useData(initialValue){

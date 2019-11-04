@@ -4,7 +4,7 @@ let mongoose = require('mongoose'),
 
 let user = require('../models/user-schema');
 
-router.route('/create').post((req, res, next) => {
+router.route('/users/create').post((req, res, next) => {
     console.log("inside create")
     user.create(req.body, (error, data) => {
         if (error) {

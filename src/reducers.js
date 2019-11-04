@@ -1,14 +1,16 @@
-import {editUser} from './actions';
-import {EDITUSER} from './constants';
+import {CALLING_API,FINISHED_API} from './constants';
 
 const initialState={
-	userInEdit:{}
+	userInEdit:{},
+	isLoading: true
 }
 
 export const setDataR=(state=initialState,action={})=>{
 	switch(action.type){
-		case EDITUSER:
-			return Object.assign({},state,{userInEdit: action.payload});
+		case CALLING_API:
+			return Object.assign({},state,{statusMessage: action.payload,isLoading: true})
+		case FINISHED_API:
+			return Object.assign({},state,{statusMessage: action.payload,isLoading: false})
 		default:
 			return state;
 	}
